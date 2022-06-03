@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const questions = [
   {
