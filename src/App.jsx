@@ -73,7 +73,6 @@ const questions = [
 
 export const App = () => {
   const [score, setScore] = useState(0);
-  const [question, setQuestion] = useState(0);
   const [count, setCount] = useState(0);
 
   const handleQuestion = (event) => {
@@ -86,25 +85,43 @@ export const App = () => {
   return (
     <div className="App">
       <div className="containerQuizz">
-        <div><h5>Pergunta {count + 1} de {questions.length}</h5></div>
-        <div>
-          <h2>{questions[count].questionText}</h2>
-        </div>
-        <div>
-          {questions[count].answers.map((question, index) => {
-            return (
-              <div>
-                <button
-                  value={question.isCorrect}
-                  onClick={(event) => handleQuestion(event.target.value)}
-                  key={index}
-                >
-                  {question.answerText}
-                </button>
-              </div>
-            );
-          })}
-        </div>
+        {count <= questions.length ? (
+          <>
+            <div>
+              <h5>
+                Pergunta {count + 1} de {questions.length}
+              </h5>
+            </div>
+            <div>
+              <h2>{questions[count].questionText}</h2>
+            </div>
+            <div>
+              {questions[count].answers.map((question, index) => {
+                return (
+                  <div>
+                    <button
+                      value={question.isCorrect}
+                      onClick={(event) => handleQuestion(event.target.value)}
+                      key={index}
+                    >
+                      {question.answerText}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <>
+            <div>
+              <h5>Muito bem!</h5>
+            </div>
+            <div>
+              <h2>Parabéns! Você terminou o quizz.</h2>
+            </div>
+            <button className="btnRefactor" onClick={() => handleRequizz}>Refazer</button>
+          </>
+        )}
       </div>
     </div>
   );
