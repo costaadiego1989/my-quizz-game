@@ -12,8 +12,7 @@ const questions = [
         isCorrect: false,
       },
       {
-        answerText:
-          "Pedro Pascal AlvaresTem entre 4 a 6 litros. São retirados 450 mililitros.",
+        answerText: "Tem entre 4 a 6 litros. São retirados 450 mililitros.",
         isCorrect: true,
       },
       {
@@ -73,36 +72,26 @@ const questions = [
 ];
 
 export const App = () => {
-
   const [score, setScore] = useState(0);
-  const [value, setNewValue] = useState(0);
-  const [oldValue, setOldValue] = useState(0);
-  const [operator, setNewOperator] = useState([]);
+  const [question, setQuestion] = useState(0);
+  const [count, setCount] = useState(0);
 
-  return <div className="App">
-    <div className="containerQuizz">
-      <div>{value}</div>
-      <div>
-        <button>AC</button>
-        <button>+/-</button>
-        <button>%</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>+</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>-</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button>*</button>
-        <button>0</button>
-        <button>0</button>
-        <button>,</button>
-        <button>=</button>
+  return (
+    <div className="App">
+      <div className="containerQuizz">
+        <div>
+          <h2>{questions[0].questionText}</h2>
+        </div>
+        <div>
+          {questions[0].answers.map((question, index) => {
+            return (
+              <div>
+                <button key={index}>{question.answerText}</button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
-  </div>;
+  );
 };
