@@ -80,10 +80,10 @@ export const App = () => {
     <div className="App">
       <div className="containerQuizz">
         <div>
-          <h2>{questions[0].questionText}</h2>
+          <h2>{questions[setCount + 1].questionText}</h2>
         </div>
         <div>
-          {questions[0].answers.map((question, index) => {
+          {questions[setCount + 1].answers.map((question, index) => {
             return (
               <div>
                 <button key={index}>{question.answerText}</button>
