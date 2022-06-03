@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const questions = [
   {
@@ -80,15 +80,11 @@ export const App = () => {
     if (event === "true") {
       setScore(score + 1);
     }
-    console.log(count);
-    console.log(score);
   };
 
   const handleRequizz = () => {
     setCount(0);
     setScore(0);
-    console.log(count);
-    console.log(score);
   };
 
   return (
