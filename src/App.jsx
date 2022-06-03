@@ -76,17 +76,31 @@ export const App = () => {
   const [question, setQuestion] = useState(0);
   const [count, setCount] = useState(0);
 
+  const handleQuestion = (event) => {
+    setCount(count + 1);
+    if (event === true) {
+      setScore(score + 1);
+    }
+  };
+
   return (
     <div className="App">
       <div className="containerQuizz">
+        <div><h5>Pergunta {count + 1} de {questions.length}</h5></div>
         <div>
-          <h2>{questions[setCount + 1].questionText}</h2>
+          <h2>{questions[count].questionText}</h2>
         </div>
         <div>
-          {questions[setCount + 1].answers.map((question, index) => {
+          {questions[count].answers.map((question, index) => {
             return (
               <div>
-                <button key={index}>{question.answerText}</button>
+                <button
+                  value={question.isCorrect}
+                  onClick={(event) => handleQuestion(event.target.value)}
+                  key={index}
+                >
+                  {question.answerText}
+                </button>
               </div>
             );
           })}
