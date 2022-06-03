@@ -77,16 +77,18 @@ export const App = () => {
 
   const handleQuestion = (event) => {
     setCount(count + 1);
-    console.log(event);
-    console.log(score);
     if (event === "true") {
       setScore(score + 1);
     }
+    console.log(count);
+    console.log(score);
   };
 
   const handleRequizz = () => {
-    setCount(1);
+    setCount(0);
     setScore(0);
+    console.log(count);
+    console.log(score);
   };
 
   return (
@@ -105,10 +107,11 @@ export const App = () => {
             <div>
               {questions[count].answers.map((question, index) => {
                 return (
-                  <div key={index}
-                  >
+                  <div key={index}>
                     <button
-                      onClick={() => handleQuestion(question.isCorrect.toString())}
+                      onClick={() =>
+                        handleQuestion(question.isCorrect.toString())
+                      }
                     >
                       {question.answerText}
                     </button>
@@ -120,15 +123,27 @@ export const App = () => {
         ) : (
           <>
             <div>
-              <h5>Yaaaaaay...!</h5>
+              <h5>{score < 2 ? "Ufaaaaa... Que sufoco!" : " Yaaaaaay...!"}</h5>
             </div>
             <div>
-              <h2>Parabéns! Você terminou o quizz.</h2>
+              <h2>
+                {score < 2
+                  ? "Acho melhor você tentar de novo!"
+                  : "Parabéns! Você terminou o quizz."}
+              </h2>
             </div>
             <div>
-              <p>Você acertou {score} de {questions.length}.</p>
+              <p>
+                Você acertou {score} de {questions.length}.
+              </p>
             </div>
-            <button className="btnRefactor" onClick={() => handleRequizz}>Refazer</button>
+            {score >= questions.length ? (
+              <button className="disabledContent">Finalizado</button>
+            ) : (
+              <button className="btnRefactor" onClick={handleRequizz}>
+                Refazer
+              </button>
+            )}
           </>
         )}
       </div>
