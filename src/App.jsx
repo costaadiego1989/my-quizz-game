@@ -77,15 +77,22 @@ export const App = () => {
 
   const handleQuestion = (event) => {
     setCount(count + 1);
-    if (event === true) {
+    console.log(event);
+    console.log(score);
+    if (event === "true") {
       setScore(score + 1);
     }
+  };
+
+  const handleRequizz = () => {
+    setCount(1);
+    setScore(0);
   };
 
   return (
     <div className="App">
       <div className="containerQuizz">
-        {count <= questions.length ? (
+        {count < questions.length ? (
           <>
             <div>
               <h5>
@@ -98,11 +105,10 @@ export const App = () => {
             <div>
               {questions[count].answers.map((question, index) => {
                 return (
-                  <div>
+                  <div key={index}
+                  >
                     <button
-                      value={question.isCorrect}
-                      onClick={(event) => handleQuestion(event.target.value)}
-                      key={index}
+                      onClick={() => handleQuestion(question.isCorrect.toString())}
                     >
                       {question.answerText}
                     </button>
@@ -114,10 +120,13 @@ export const App = () => {
         ) : (
           <>
             <div>
-              <h5>Muito bem!</h5>
+              <h5>Yaaaaaay...!</h5>
             </div>
             <div>
               <h2>Parabéns! Você terminou o quizz.</h2>
+            </div>
+            <div>
+              <p>Você acertou {score} de {questions.length}.</p>
             </div>
             <button className="btnRefactor" onClick={() => handleRequizz}>Refazer</button>
           </>
